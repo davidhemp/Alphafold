@@ -52,9 +52,9 @@ jobs:
         sudo apt update
         sudo apt install -y apptainer
     - name: Build Singularity image
-      run: sudo SINGULARITY_NOHTTPS=true singularity build alphafold.sif docker://localhost:5000/alphafold:latest
+      run: sudo SINGULARITY_NOHTTPS=true singularity build /mnt/alphafold.sif docker://localhost:5000/alphafold:latest
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
       with:
         name: alphafold Singularity image
-        path: alphafold.sif
+        path: /mnt/alphafold.sif
