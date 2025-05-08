@@ -19,12 +19,12 @@ jobs:
         repository: deepmind/alphafold
     - name: Build docker image locally
       run: sudo docker build -f docker/Dockerfile -t alphafold .
-    - name: Start docker image
+    - name: Start docker deamon
       run: sudo docker run -d -p 5000:5000 --restart=always --name registry registry:2
     - name: Tag image
       run: sudo docker image tag alphafold:latest localhost:5000/alphafold:latest
     - name: Push image to local docker library
-      run: sudo push localhost:5000/alphafold:latest
+      run: sudo docker push localhost:5000/alphafold:latest
     - name: Install singularity
       run: |
         sudo add-apt-repository -y ppa:apptainer/ppa
