@@ -17,9 +17,16 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: deepmind/alphafold
+    - name: list items
+      run: ls -la
     - name: Build docker image locally
       working-directory: ./alphafold
       run: docker build -f docker/Dockerfile -t alphafold .
+    - name: Install singularity
+      run: |
+        sudo add-apt-repository -y ppa:apptainer/ppa
+        sudo apt update
+        sudo apt install -y apptainer
 #git clone https://github.com/deepmind/alphafold.git
 #cd alphafold
 #sudo docker build -f docker/Dockerfile -t alphafold .
