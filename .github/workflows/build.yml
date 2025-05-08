@@ -17,7 +17,9 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: deepmind/alphafold
-    
+    - name: Build docker image locally
+      working-directory: ./alphafold
+      run: docker build -f docker/Dockerfile -t alphafold .
 #git clone https://github.com/deepmind/alphafold.git
 #cd alphafold
 #sudo docker build -f docker/Dockerfile -t alphafold .
