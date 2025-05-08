@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Check out my other private repo
       uses: actions/checkout@master
       with:
@@ -25,6 +23,8 @@ jobs:
       run: sudo docker image tag alphafold:latest localhost:5000/alphafold:latest
     - name: Push image to local docker library
       run: sudo docker push localhost:5000/alphafold:latest
+    - name: Check usage
+      run: du . -sh
     - name: Install singularity
       run: |
         sudo add-apt-repository -y ppa:apptainer/ppa
